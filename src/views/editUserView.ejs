@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include partials/head%>
+</head>
+<body>
+<header class="navbar navbar-bright navbar-fixed-top" role="banner">
+    <% include partials/header%>
+</header>
+
+<div id="masthead">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <h1><%=user.name.last%>, <%=user.name.first%>
+                    <p class="lead"></p>
+                </h1>
+            </div>
+            <div class="col-md-5">
+                <div class="well well-lg">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            Clients are able to edit their personal info as well as to cancel any unwanted change made by mistake. The post request will update the database as well as the user session used on the profile view. Please note that passwords need to match. Adding simple libraries like JQuery validators can make the inputs more dynamic.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /cont -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="top-spacer"></div>
+            </div>
+        </div>
+    </div><!-- /cont -->
+</div>
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="row col-sm-offset-1">
+                        <br>
+                        <div class="col-md-2 col-sm-3 text-center">
+                            <a class="story-title" href="#"><img alt="" src="<%=user.picture%>" style="width:100px;height:100px" class="img-circle"></a>
+                        </div>
+
+                        <h3>Edit Profile:</h3>
+                        <hr>
+
+                        <form name="editUserForm" action="edit" method="post">
+                            <div class="col-md-5 col-sm-4">
+                                <div class="col-xs-9">
+                                    <h4>Company: </h4>
+                                    <input type="text" value="<%=user.company%>" name="company" id="company" autocomplete="off" class="form-control search_box" placeholder="Company Name" required="true">
+                                    <br>
+                                    <h4>Email: </h4>
+                                    <input type="text" value="<%=user.email%>" name="email" id="email" autocomplete="off" class="form-control search_box" placeholder="Email" required="true">
+                                    <br>
+                                    <h4>Phone: </h4>
+                                    <input type="text" value="<%=user.phone%>" name="phone" id="phone" autocomplete="off" class="form-control search_box" placeholder="Phone Number" required="true">
+                                    <br>
+                                    <h4>Address: </h4>
+                                    <input type="text" value="<%=user.address%>" name="address" id="address" autocomplete="off" class="form-control search_box" placeholder="Address" required="true">
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-5 col-sm-4">
+                                <div class="col-xs-9">
+                                    <h4>Age: </h4>
+                                    <input type="text" value="<%=user.age%>" name="age" id="age" autocomplete="off" class="form-control search_box" placeholder="Age" required="true">
+                                    <br>
+                                    <h4>Eye Color: </h4>
+                                    <input type="text" value="<%=user.eyeColor%>" name="eyecolor" id="eyecolor" autocomplete="off" class="form-control search_box" placeholder="Eye Color" required="true">
+                                    <br>
+                                    <h4>Password: </h4>
+                                    <input type="password" value="<%=user.password%>" name="password" id="password" autocomplete="off" class="form-control search_box" placeholder="Password" required="true">
+                                    <br>
+                                    <h4>Repeat Password: </h4>
+                                    <input type="password" value="<%=user.password%>" name="password2" id="password2" autocomplete="off" class="form-control search_box" placeholder="Repeat Password" required="true">
+                                    <br>
+                                    <button class="btn btn-primary btn-md" onclick="checkPasswords(event)" name="submit" value="save" style="float: right; margin-left: 10px;">Save</button>
+                                    <button class="btn btn-primary btn-md" type="submit" name="submit" value="cancel" style="float: right;">Cancel</button>
+                                </div>
+                                <div class="col-xs-3"></div>
+                            </div>
+                        </form>
+                        <hr>
+                        <!--/books-->
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div><!--/col-12-->
+    </div>
+</div>
+
+
+<hr>
+
+<hr>
+
+<% include partials/personalButtons%>
+
+<hr>
+
+<% include partials/footer%>
+
+<script>
+    function checkPasswords(event){
+        if($("#password").val() != $("#password2").val()){
+            event.preventDefault();
+            $('#editUserForm').submit();
+        }
+        else {
+            $('#editUserForm').submit();
+        }
+    }
+</script>
+
+</body>
+</html>
